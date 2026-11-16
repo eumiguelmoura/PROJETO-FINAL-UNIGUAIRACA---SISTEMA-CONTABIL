@@ -1,24 +1,5 @@
-# Quasar App (poo-web-quasar)
+# NextContábil — Interface Web (Quasar / Vue.js)
 
-## Install the dependencies
+Interface web do projeto NextContábil. Execute com o Docker Compose na raiz do repositório e acesse http://localhost:9010.
 
-```bash
-pnpm install
-# or: yarn/npm/bun install
-```
-
-### Start the app in development mode (HMR, error reporting, etc.)
-
-```bash
-quasar dev
-```
-
-### Build the app for production
-
-```bash
-quasar build
-```
-
-### Customize the configuration
-
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-file).
+Consulte o README da raiz para instalar a API e o MySQL.

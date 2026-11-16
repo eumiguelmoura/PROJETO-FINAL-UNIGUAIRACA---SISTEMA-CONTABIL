@@ -9,7 +9,7 @@ function Run-Docker([string[]]$Arguments) {
 }
 
 try {
-    Write-Host '=== SISTEMA CONTABIL - PRIMEIRA INSTALACAO ===' -ForegroundColor Cyan
+    Write-Host '=== NEXTCONTABIL - PRIMEIRA INSTALACAO ===' -ForegroundColor Cyan
     if (-not (Test-Path -LiteralPath '.\docker-compose.yaml')) {
         throw 'docker-compose.yaml nao encontrado. Extraia o ZIP e execute na pasta sistema_contabil_unificado.'
     }
@@ -69,7 +69,7 @@ try {
     Write-Host "`n[1/5] Construindo e iniciando Docker (primeira vez baixa arquivos)..." -ForegroundColor Cyan
     Run-Docker -Arguments @('compose','up','-d','--build')
     Write-Host "`n[2/5] Instalando dependencias do Laravel..." -ForegroundColor Cyan
-    Run-Docker -Arguments @('compose','exec','-T','-u','root','php','composer','install','--no-interaction','--prefer-dist')
+    Run-Docker -Arguments @('compose','exec','-T','-u','root','-e','COMPOSER_PROCESS_TIMEOUT=1200','php','composer','install','--no-interaction','--prefer-dist','--no-progress')
     Run-Docker -Arguments @('compose','exec','-T','-u','root','php','sh','-c','mkdir -p storage/framework/cache storage/framework/sessions storage/framework/views storage/logs bootstrap/cache && chown -R www-data:www-data storage bootstrap/cache')
 
     $envContent = [System.IO.File]::ReadAllText((Resolve-Path -LiteralPath '.\apps\api\.env').Path)

@@ -1,32 +1,66 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="notranslate" translate="no">
-    <q-header class="app-header" elevated><q-toolbar class="q-px-md">
-      <q-btn flat dense round icon="menu" @click="drawer = !drawer" aria-label="Abrir menu" />
-      <q-toolbar-title class="text-weight-bold">Sistema Contábil</q-toolbar-title>
-      <div class="gt-xs text-right q-mr-md"><div class="text-weight-medium">{{ user?.name }}</div><div class="text-caption opacity-70">{{ user?.email }}</div></div>
-      <q-btn flat round icon="logout" @click="signOut"><q-tooltip>Sair do sistema</q-tooltip></q-btn>
-    </q-toolbar></q-header>
-    <q-drawer v-model="drawer" show-if-above bordered :width="270" class="bg-white">
-      <q-list padding>
-        <q-item-label header class="text-overline text-grey-6">NAVEGAÇÃO</q-item-label>
-        <q-item clickable v-ripple to="/admin" exact active-class="menu-active"><q-item-section avatar><q-icon name="dashboard" /></q-item-section><q-item-section><span class="notranslate">Início</span></q-item-section></q-item>
-        <q-item clickable v-ripple to="/admin/entradas" active-class="menu-active"><q-item-section avatar><q-icon name="receipt_long" /></q-item-section><q-item-section><span class="notranslate">LANÇAMENTO DE NOTAS</span></q-item-section></q-item>
-        <q-item clickable v-ripple to="/admin/apuracoes" active-class="menu-active"><q-item-section avatar><q-icon name="calculate" /></q-item-section><q-item-section><span class="notranslate">Apuração de impostos</span></q-item-section></q-item>
-        <q-item clickable v-ripple to="/admin/apuracoes/historico" active-class="menu-active"><q-item-section avatar><q-icon name="history" /></q-item-section><q-item-section><span class="notranslate">Impostos apurados</span></q-item-section></q-item>
-      </q-list>
+  <q-layout view="lHh Lpr lFf" class="next-app-layout notranslate" translate="no">
+    <q-header class="next-app-header">
+      <q-toolbar class="next-main-toolbar">
+        <q-btn flat dense round icon="menu" @click="drawer = !drawer" aria-label="Abrir menu" class="next-menu-toggle" />
+        <div class="next-header-brand" role="img" aria-label="NextContábil">
+          <NextBrandMark small />
+          <div class="next-brand-name">Next<span>Contábil</span><small>GESTÃO CONTÁBIL E FISCAL</small></div>
+        </div>
+        <q-space />
+        <div class="next-header-user gt-xs" v-if="user">
+          <div class="next-avatar"><q-icon name="person_outline" size="21px" /></div>
+          <div class="next-user-copy"><strong>{{ user.name }}</strong><span>{{ user.email }}</span></div>
+        </div>
+        <q-btn flat round icon="logout" class="next-logout" @click="signOut" aria-label="Sair do sistema"><q-tooltip>Sair do sistema</q-tooltip></q-btn>
+      </q-toolbar>
+    </q-header>
+
+    <q-drawer v-model="drawer" show-if-above bordered :width="278" class="next-sidebar">
+      <div class="next-sidebar-inside">
+        <div class="next-sidebar-caption">MENU PRINCIPAL</div>
+        <q-list class="next-nav-list">
+          <q-item clickable v-ripple to="/admin" exact active-class="next-menu-active">
+            <q-item-section avatar><q-icon name="grid_view" size="22px" /></q-item-section>
+            <q-item-section>Visão geral</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple to="/admin/entradas" active-class="next-menu-active">
+            <q-item-section avatar><q-icon name="description" size="22px" /></q-item-section>
+            <q-item-section>Lançamento de notas</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple to="/admin/apuracoes" exact active-class="next-menu-active">
+            <q-item-section avatar><q-icon name="calculate" size="22px" /></q-item-section>
+            <q-item-section>Apuração de impostos</q-item-section>
+          </q-item>
+          <q-item clickable v-ripple to="/admin/apuracoes/historico" active-class="next-menu-active">
+            <q-item-section avatar><q-icon name="history" size="22px" /></q-item-section>
+            <q-item-section>Histórico de apurações</q-item-section>
+          </q-item>
+        </q-list>
+        <div class="next-sidebar-bottom">
+          <div class="next-sidebar-bottom-icon"><q-icon name="verified_user" size="20px" /></div>
+          <div><strong>Ambiente protegido</strong><span>NextContábil • Projeto acadêmico</span></div>
+        </div>
+      </div>
     </q-drawer>
     <q-page-container><router-view /></q-page-container>
   </q-layout>
 </template>
+
 <script setup>
 import { ref, computed } from 'vue'
 import { LocalStorage, Notify } from 'quasar'
 import { useRouter } from 'vue-router'
 import { api } from 'src/boot/axios'
-const router=useRouter(),drawer=ref(false)
-const user=computed(()=>LocalStorage.getItem('auth_data')?.user)
+import NextBrandMark from 'src/components/NextBrandMark.vue'
+
+const router = useRouter()
+const drawer = ref(false)
+const user = computed(() => LocalStorage.getItem('auth_data')?.user)
 async function signOut() {
   try { await api.post('/auth/logout') } catch { /* limpar sessão local mesmo offline */ }
-  LocalStorage.remove('auth_data'); Notify.create('Sessão encerrada');router.replace('/login')
+  LocalStorage.remove('auth_data')
+  Notify.create('Sessão encerrada')
+  await router.replace('/login')
 }
 </script>

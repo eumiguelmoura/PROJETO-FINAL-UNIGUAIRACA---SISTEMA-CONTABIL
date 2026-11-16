@@ -1,4 +1,6 @@
-# Sistema Contábil Integrado — Laravel + Quasar + Flutter
+# NextContábil — Laravel + Quasar + Flutter
+
+> **Identidade visual atualizada:** NextContábil — novo login, painel, menu, cores, ícone e app Flutter. Consulte [docs/IDENTIDADE_VISUAL_NEXTCONTABIL.md](docs/IDENTIDADE_VISUAL_NEXTCONTABIL.md).
 
 **INSTALAÇÃO EM OUTRO COMPUTADOR (WINDOWS):** use `INSTALAR_PRIMEIRA_VEZ.bat` desta pasta. Ela configura o ambiente, solicita uma senha para o administrador e inicia a aplicação. Nas próximas vezes, use `ABRIR_SISTEMA.bat`. Veja `LEIA_PRIMEIRO.txt`.
 
@@ -149,3 +151,32 @@ CRUD completo no Flutter para a entidade **Nota Fiscal**: `POST /invoices`, `GET
 ## Entrega das disciplinas
 
 Veja `docs/CRITERIOS_DAS_DISCIPLINAS.md` com o mapeamento das exigências, `docs/ARQUITETURA.md` para compreender o código e `docs/API.md` para testar rotas. **Não foram enviados códigos a repositórios GitHub automaticamente.** Publique em repositórios acessíveis ao professor e informe os links segundo as orientações da disciplina. Os screenshots das telas devem ser capturados após iniciar os aplicativos.
+
+
+## 📸 Capturas de Tela — NextContábil
+
+### Tela de Login
+![Login do NextContábil](imagens/login.png)
+
+### Painel Principal
+![Dashboard do NextContábil](imagens/dashboard.png)
+
+### Lançamento de Notas
+![Lançamento de notas](imagens/lancamento%20de%20notas.png)
+
+### Cadastro de Notas Fiscais
+
+**Etapa 1 — Informações da nota**
+
+![Lançamento 1](imagens/lancamento%201.png)
+
+**Etapa 2 — Produtos e impostos**
+
+![Lançamento 2](imagens/lancamento%202.png)
+
+**Etapa 3 — Cálculos e totais**
+
+![Lançamento 3](imagens/lancamento%203.png)
+
+### Impostos Apurados
+![Impostos apurados](imagens/impostos%20apurados.png)

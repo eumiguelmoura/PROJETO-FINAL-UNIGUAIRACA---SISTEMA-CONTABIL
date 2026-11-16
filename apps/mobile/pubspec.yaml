@@ -1,5 +1,5 @@
 name: sistema_contabil
-description: Sistema contábil integrado - cliente Flutter para API Laravel.
+description: NextContábil - aplicativo Flutter integrado à API Laravel.
 publish_to: none
 version: 1.0.0+1
 environment:

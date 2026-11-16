@@ -1,4 +1,4 @@
-# Arquitetura do Sistema Contábil
+# Arquitetura do NextContábil
 
 ## Backend Laravel
 

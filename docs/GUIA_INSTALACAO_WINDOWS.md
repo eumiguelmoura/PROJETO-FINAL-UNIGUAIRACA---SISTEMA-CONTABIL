@@ -1,4 +1,4 @@
-# GUIA DE INSTALAÇÃO NO WINDOWS — SISTEMA CONTÁBIL
+# GUIA DE INSTALAÇÃO NO WINDOWS — NEXTCONTÁBIL
 
 Este documento acompanha o projeto efetivo. Para o primeiro uso, **não edite controllers PHP nem instale PHP no Windows**: o contêiner PHP já executa PHP 8.4 e o Composer. Use o terminal **PowerShell** do VS Code na pasta que contém `docker-compose.yaml`.
 
